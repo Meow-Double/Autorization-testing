@@ -1,0 +1,49 @@
+.inner {
+  max-width: 280px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 30px;
+  padding: 20px;
+  margin: 20px;
+  border-radius: 4px;
+  background-color: #3c3c53;
+}
+
+.img {
+  width: 160px;
+  height: 160px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.name {
+  text-transform: uppercase;
+  font-size: 24px;
+  font-style: 600px;
+  margin-bottom: 4px;
+}
+
+.email {
+  font-size: 16px;
+  font-weight: 500;
+  color: #c0c0c0;
+}
+.money_block {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+}
+.money {
+  font-size: 24px;
+  font-weight: 600;
+}
+
+.menu_list {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+}
