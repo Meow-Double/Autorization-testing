@@ -4,10 +4,16 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { RegisterSchema, registerSchema } from './constans/RegisterSchema';
 import clsx from 'clsx';
 import { postUser } from '@/api/requests';
+import { Link, useNavigate } from 'react-router-dom';
+import { useContext } from 'react';
+import { ProfileContext } from '@/context/Profile/ProfileContext';
 
 export const AuthPage = () => {
   // const [password, setPassword] = useState<string>('');
 
+  const navigate = useNavigate();
+
+  const { setIsAuth } = useContext(ProfileContext);
   const {
     register,
     handleSubmit,
@@ -23,8 +29,9 @@ export const AuthPage = () => {
       const response = await postUser({ params: user, config: {} });
       if (response.status === 200) {
         alert('Пользователь зарегестрирован!');
-        // setPassword(response.data.password);
-        localStorage.setItem('psw', response.data.password);
+        localStorage.setItem('jwt', response.data.accessToken);
+        setIsAuth(true);
+        navigate('/profile');
       }
     } catch (error: any & Error) {
       alert(error.response.data.message);
@@ -34,7 +41,7 @@ export const AuthPage = () => {
   return (
     <div className={styles.wrapper}>
       <form className={styles.form} onSubmit={handleSubmit(onSubmit)}>
-        <h2 className={styles.title}>Авторизация</h2>
+        <h2 className={styles.title}>Регестрация</h2>
         <div className={styles.input_block}>
           <input
             type='text'
@@ -72,9 +79,9 @@ export const AuthPage = () => {
           <span className={clsx(styles.error_text)}>{errors.confirmPassword?.message}</span>
         </div>
 
-        <a href='#!' className={styles.link}>
+        <Link to="/login" className={styles.link}>
           Login in
-        </a>
+        </Link>
         <button className={styles.btn}>Зарегестрироваться</button>
       </form>
     </div>

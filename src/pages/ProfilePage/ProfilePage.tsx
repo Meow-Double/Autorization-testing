@@ -14,7 +14,7 @@ export const ProfilePage = () => {
           Click me
         </Button>
       </div>
-      <SideBar money={money}/>
+      <SideBar money={money} />
     </div>
   );
 };

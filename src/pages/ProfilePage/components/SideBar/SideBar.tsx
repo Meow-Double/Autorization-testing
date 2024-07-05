@@ -1,12 +1,24 @@
 import { Button } from '@/shared';
 import styles from './SideBar.module.css';
 import MoneySvg from '@/assets/svg/money.svg';
+import { useNavigate } from 'react-router-dom';
+import { useContext } from 'react';
+import { ProfileContext } from '@/context/Profile/ProfileContext';
 
 interface SideBarProps {
   money: number;
 }
 
 export const SideBar = ({ money }: SideBarProps) => {
+  const navigate = useNavigate();
+  const { setIsAuth } = useContext(ProfileContext);
+
+  const onClickExit = () => {
+    localStorage.removeItem('jwt');
+    setIsAuth(false);
+    navigate('/auth');
+  };
+
   return (
     <div className={styles.inner}>
       <img
@@ -24,7 +36,9 @@ export const SideBar = ({ money }: SideBarProps) => {
       </div>
       <div className={styles.menu_list}>
         <Button variant='primary'>Settings</Button>
-        <Button variant='primary'>Exit</Button>
+        <Button variant='primary' onClick={onClickExit}>
+          Exit
+        </Button>
       </div>
     </div>
   );
