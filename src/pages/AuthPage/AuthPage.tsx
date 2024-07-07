@@ -29,7 +29,7 @@ export const AuthPage = () => {
       const response = await postUser({ params: user, config: {} });
       if (response.status === 200) {
         alert('Пользователь зарегестрирован!');
-        localStorage.setItem('jwt', response.data.accessToken);
+        localStorage.setItem('jwt', JSON.stringify(response.data));
         setIsAuth(true);
         navigate('/profile');
       }
@@ -79,7 +79,7 @@ export const AuthPage = () => {
           <span className={clsx(styles.error_text)}>{errors.confirmPassword?.message}</span>
         </div>
 
-        <Link to="/login" className={styles.link}>
+        <Link to='/login' className={styles.link}>
           Login in
         </Link>
         <button className={styles.btn}>Зарегестрироваться</button>

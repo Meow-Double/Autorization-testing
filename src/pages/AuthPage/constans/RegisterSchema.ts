@@ -6,7 +6,7 @@ export const registerSchema = z
     email: z
       .string()
       .min(6, { message: 'Минимальная длина 6 символов' })
-      .max(24, { message: 'Максимальная длина 24 символа' })
+      .max(40, { message: 'Максимальная длина 40 символов' })
       .refine((email) => validateEmail(email), { message: 'Некорректная почта' }),
 
     name: z

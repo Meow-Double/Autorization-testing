@@ -1,7 +1,7 @@
 import { useForm } from 'react-hook-form';
 import styles from './LoginPage.module.css';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { LoginSchema, loginSchema } from './constanse/LoginShcema';
+import { LoginSchema, loginSchema } from './constans/LoginShcema';
 import clsx from 'clsx';
 import { Link, useNavigate } from 'react-router-dom';
 import { postLogin } from '@/api/requests/login';
@@ -25,7 +25,7 @@ export const LoginPage = () => {
     try {
       const response = await postLogin({ params: { ...value } });
       alert('Вы вошли!');
-      localStorage.setItem('jwt', response.data.accessToken);
+      localStorage.setItem('jwt', JSON.stringify(response.data));
       setIsAuth(true);
       navigate('/profile');
     } catch (error: any) {

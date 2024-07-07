@@ -6,8 +6,8 @@ interface UserTypes {
 }
 
 interface PostUserTypes {
-  user:UserTypes;
-  accessToken: string
+  user: UserTypes;
+  accessToken: string;
 }
 
 interface PostUserAnswerTypes {
@@ -18,5 +18,10 @@ interface PostUserAnswerTypes {
 }
 
 type PostUsersTypes = Array<PostUserTypes>;
+
+interface MoneyTypes {
+  id: string;
+  money: number;
+}
 
 

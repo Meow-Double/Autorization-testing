@@ -2,7 +2,7 @@ import { createContext } from 'react';
 
 export type ProfileContextTypes = {
   money: number;
-  setMoney: (state: number) => void;
+  setMoney: (state: number | ((prev: number) => number)) => void;
   setIsAuth: (state: boolean) => void;
 };
 

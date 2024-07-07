@@ -1,0 +1,12 @@
+.menu {
+  display: flex;
+  align-items: center;
+  margin: 20px;
+}
+
+.item {
+  background-color: #e05a5a;
+}
+.btn{
+    padding: 8px 24px;
+}
