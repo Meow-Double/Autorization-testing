@@ -3,6 +3,7 @@ interface UserTypes {
   email: string;
   password: string;
   id: string;
+  isActivated: boolean;
 }
 
 interface PostUserTypes {
@@ -23,5 +24,3 @@ interface MoneyTypes {
   id: string;
   money: number;
 }
-
-

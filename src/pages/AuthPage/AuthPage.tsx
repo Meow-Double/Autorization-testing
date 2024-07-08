@@ -31,7 +31,7 @@ export const AuthPage = () => {
         alert('Пользователь зарегестрирован!');
         localStorage.setItem('jwt', JSON.stringify(response.data));
         setIsAuth(true);
-        navigate('/profile');
+        navigate('/activate-link');
       }
     } catch (error: any & Error) {
       alert(error.response.data.message);

@@ -10,7 +10,6 @@ interface ProfileProviderProps {
 export const ProfileProvider = ({ children, moneyCount, setIsAuth }: ProfileProviderProps) => {
   const [money, setMoney] = useState<number>(moneyCount);
 
-
   return (
     <ProfileContext.Provider value={{ money, setMoney, setIsAuth }}>
       {children}
