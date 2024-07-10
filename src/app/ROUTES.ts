@@ -1,5 +1,6 @@
 export const ROUTES = {
   AUTH: '/auth',
   PROFILE: '/profile',
-  LOGIN: '/login'
+  LOGIN: '/login',
+  RESSPASS: '/ress-pass'
 };

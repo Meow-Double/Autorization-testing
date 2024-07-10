@@ -80,7 +80,7 @@ export const AuthPage = () => {
         </div>
 
         <Link to='/login' className={styles.link}>
-          Login in
+          Вход
         </Link>
         <button className={styles.btn}>Зарегестрироваться</button>
       </form>

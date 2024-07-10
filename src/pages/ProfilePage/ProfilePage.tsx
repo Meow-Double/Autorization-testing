@@ -5,7 +5,7 @@ import { useContext, useEffect, useState } from 'react';
 import { ProfileContext } from '@/context/Profile/ProfileContext';
 import { MenuBar } from './components/menuBar/MenuBar';
 import { postSetMoney } from '@/api/requests/setMoney';
-import { getActivated, getMoney, postActivated } from '@/api/requests';
+import {  getMoney, postActivated } from '@/api/requests';
 import { ActivateLink } from './components/ActivateLink/ActivateLink';
 
 export const ProfilePage = () => {
@@ -39,19 +39,20 @@ export const ProfilePage = () => {
   };
 
   useEffect(() => {
-    const accessToken = user?.accessToken;
     const data = window.localStorage.getItem('jwt');
     const jwtData = JSON.parse(data);
 
-    postActivated({
-      params: { email: jwtData.user.email },
-      config: { headers: { Authorization: accessToken } }
-    }).then((res) => {
-      if (res.data.isActivated) {
-        window.localStorage.removeItem('jwt');
-        window.location.reload();
-      }
-    });
+    if (!jwtData.user.isActivated) {
+      postActivated({
+        params: { email: jwtData.user.email },
+        config: { headers: { Authorization: jwtData.accessToken } }
+      }).then((res) => {
+        if (res.data.isActivated) {
+          window.localStorage.removeItem('jwt');
+          window.location.reload();
+        }
+      });
+    }
   }, []);
 
   if (!user?.user.isActivated) {

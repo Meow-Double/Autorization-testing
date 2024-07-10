@@ -33,6 +33,13 @@ export const LoginPage = () => {
     }
   };
 
+  const onResetPass = () => {
+    // const { email } = getValues();
+    // window.localStorage.setItem('email', email);
+    // navigate('/reset-pass');
+    alert('Ссылка сброса пароля отправлена на почуту');
+  };
+
   return (
     <div className={styles.wrapper}>
       <form className={styles.form} onSubmit={handleSubmit(onSubmit)}>
@@ -56,9 +63,14 @@ export const LoginPage = () => {
           <span className={clsx(styles.error_text)}>{errors.password?.message}</span>
         </div>
 
-        <Link to='/auth' className={styles.link}>
-          Register
-        </Link>
+        <div className={styles.links_menu}>
+          <Link to='/auth' className={styles.link}>
+            Регестрация
+          </Link>
+          <button onClick={onResetPass} className={styles.link}>
+            Забыл пароль
+          </button>
+        </div>
         <button className={styles.btn}>Войти в аккаунт</button>
       </form>
     </div>
