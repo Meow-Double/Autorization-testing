@@ -7,6 +7,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { postLogin } from '@/api/requests/login';
 import { useContext } from 'react';
 import { ProfileContext } from '@/context/Profile/ProfileContext';
+import { postResetPass } from '@/api/requests/reset-pass';
 
 export const LoginPage = () => {
   const { setIsAuth } = useContext(ProfileContext);
@@ -15,6 +16,7 @@ export const LoginPage = () => {
   const {
     register,
     handleSubmit,
+    getValues,
     formState: { errors }
   } = useForm<LoginSchema>({
     resolver: zodResolver(loginSchema),
@@ -33,11 +35,16 @@ export const LoginPage = () => {
     }
   };
 
-  const onResetPass = () => {
-    // const { email } = getValues();
-    // window.localStorage.setItem('email', email);
-    // navigate('/reset-pass');
-    alert('Ссылка сброса пароля отправлена на почуту');
+  const onResetPass = async () => {
+    const { email } = getValues();
+    if (email && !errors.email?.message) {
+      try {
+        await postResetPass({ params: { email } });
+        alert('Ссылка сброса пароля отправлена на почуту');
+      } catch (error: any) {
+        alert(error.response.data.message);
+      }
+    }
   };
 
   return (
